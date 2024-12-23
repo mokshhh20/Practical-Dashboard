@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shortest Path Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: inline-block;
+            margin: 10px 0 5px;
+        }
+        #city_inputs, #matrix_inputs {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #matrix_inputs label {
+            display: inline-block;
+            width: 180px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .matrix-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            text-align: center;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        p.hint {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+    <script>
+        function generateInputs() {
+            const numCities = document.getElementById("num_cities").value;
+            const cityInputs = document.getElementById("city_inputs");
+            const matrixInputs = document.getElementById("matrix_inputs");
+            cityInputs.innerHTML = "";
+            matrixInputs.innerHTML = "";
+
+            for (let i = 0; i < numCities; i++) {
+                cityInputs.innerHTML += `<label>City ${i + 1} Name:</label>
+                                         <input type="text" name="city_names" required><br>`;
+            }
+
+            cityInputs.innerHTML += `<br><label>Source City:</label>
+                                      <input type="text" name="source_city" required><br><br>
+                                      <p class="hint">Enter the distances between the cities (use ∞ for no connection)</p>`;
+
+            for (let i = 0; i < numCities; i++) {
+                let row = '<div class="matrix-row">';
+                for (let j = 0; j < numCities; j++) {
+                    row += `<label>To City ${j + 1}:</label>
+                            <input type="text" name="distances" required>`;
+                }
+                row += '</div>';
+                matrixInputs.innerHTML += row + "<br>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter City and Distance Information</h2>
+    <form action="/calculate_shortest_path" method="POST">
+        <label>Enter the Total Number of Cities:</label>
+        <input type="number" id="num_cities" name="num_cities" min="2" required>
+        <button type="button" onclick="generateInputs()">Generate Fields</button>
+        <br><br>
+
+        <div id="city_inputs"></div>
+        <div id="matrix_inputs"></div>
+        
+        <button type="submit">Calculate Shortest Path</button>
+    </form>
+</body>
+</html>

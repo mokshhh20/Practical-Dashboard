@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Comparison</title>
+</head>
+<body>
+    <h1>Sorting Algorithm Comparison</h1>
+    
+    <form method="POST">
+        <label for="data">Enter comma-separated values:</label><br>
+        <input type="text" id="data" name="data" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if complexities %}
+    <h2>Time Complexities</h2>
+    <table border="1">
+        <tr>
+            <th>Algorithm</th>
+            <th>Best Case</th>
+            <th>Average Case</th>
+            <th>Worst Case</th>
+        </tr>
+        <tr>
+            <td>Bubble Sort</td>
+            <td>{{ complexities['Bubble Sort']['Best'] }}</td>
+            <td>{{ complexities['Bubble Sort']['Average'] }}</td>
+            <td>{{ complexities['Bubble Sort']['Worst'] }}</td>
+        </tr>
+        <tr>
+            <td>Insertion Sort</td>
+            <td>{{ complexities['Insertion Sort']['Best'] }}</td>
+            <td>{{ complexities['Insertion Sort']['Average'] }}</td>
+            <td>{{ complexities['Insertion Sort']['Worst'] }}</td>
+        </tr>
+        <tr>
+            <td>Selection Sort</td>
+            <td>{{ complexities['Selection Sort']['Best'] }}</td>
+            <td>{{ complexities['Selection Sort']['Average'] }}</td>
+            <td>{{ complexities['Selection Sort']['Worst'] }}</td>
+        </tr>
+    </table>
+    {% endif %}
+
+    {% if graph_url %}
+    <h2>Time Complexity Comparison Graph</h2>
+    <img src="data:image/png;base64,{{ graph_url }}" alt="Time Complexity Graph">
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Chain Multiplication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 18px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .matrix-label {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        td {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Matrix Chain Multiplication</h1>
+        <form method="POST">
+            <label for="dimensions">Enter matrix dimensions (comma or space separated):</label>
+            <input type="text" id="dimensions" name="dimensions" placeholder="e.g., 5, 10, 3, 12, 5, 50, 6" required>
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if min_operations is not none %}
+        <div class="results">
+            <h2>Results</h2>
+            <p class="matrix-label">Number of matrices: {{ num_matrices }}</p>
+            <p><strong>Minimum number of multiplications:</strong> {{ min_operations }}</p>
+            <p><strong>Optimal Parenthesization:</strong> {{ optimal_parenthesization }}</p>
+
+            {% if multiplication_table is not none %}
+            <h3>Multiplication Table (M)</h3>
+            <table>
+                <tr>
+                    <th></th>
+                    {% for i in range(num_matrices) %}
+                        <th>Matrix {{ i + 1 }}</th>
+                    {% endfor %}
+                </tr>
+                {% for i in range(num_matrices) %}
+                    <tr>
+                        <th>Matrix {{ i + 1 }}</th>
+                        {% for j in range(num_matrices) %}
+                            <td>{{ multiplication_table[i][j] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huffman Encoder/Decoder</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f9f9f9; }
+        .container { width: 90%; max-width: 500px; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+        h1 { text-align: center; color: #333; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        .radio-buttons { display: flex; justify-content: space-around; margin: 10px 0; }
+        button { width: 100%; padding: 10px; border: none; background-color: #4CAF50; color: white; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #output { margin-top: 20px; text-align: center; color: #333; }
+        #outputText { font-weight: bold; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Huffman Encoder/Decoder</h1>
+        <form method="POST">
+            <label for="input_text">Enter Text (for Encoding) or Binary (for Decoding):</label>
+            <input type="text" id="input_text" name="input_text" value="{{ input_text }}" required>
+            
+            <div class="radio-buttons">
+                <label>
+                    <input type="radio" name="operation" value="encode" checked> Encode
+                </label>
+                <label>
+                    <input type="radio" name="operation" value="decode"> Decode
+                </label>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <div id="output">
+            <h2>Output:</h2>
+            <p id="outputText">{{ result }}</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Common Subsequence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 12px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px auto;
+            font-size: 18px;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 2px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        td {
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .lcs-result {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 20px;
+        }
+
+        .dp-heading {
+            margin-top: 30px;
+        }
+
+        .strings-display {
+            margin: 20px;
+            font-size: 18px;
+        }
+
+        .strings-display span {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Longest Common Subsequence Calculator</h1>
+
+    <form method="POST">
+        <input type="text" name="string1" placeholder="Enter first sequence (comma-separated)" required>
+        <br>
+        <input type="text" name="string2" placeholder="Enter second sequence (comma-separated)" required>
+        <br>
+        <input type="submit" value="Calculate LCS">
+    </form>
+
+    {% if dp_table %}
+        <div class="strings-display">
+            <p>String 1: <span>{{ ', '.join(string1) }}</span></p>
+            <p>String 2: <span>{{ ', '.join(string2) }}</span></p>
+        </div>
+
+        <div>
+            <h2 class="dp-heading">DP Table</h2>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>0</th>
+                    {% for c in string2 %}
+                        <th>{{ c }}</th>
+                    {% endfor %}
+                </tr>
+                {% for i, row in dp_table %}
+                    <tr>
+                        <th>{% if i == 0 %}0{% else %}{{ string1[i-1] }}{% endif %}</th>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="result">
+            <h2>Longest Common Subsequence:</h2>
+            <p class="lcs-result">{{ lcs_result }}</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

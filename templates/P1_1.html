@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <center>
+        <title>MasterChef Competition</title>
+        <style>
+            input[type="number"] {
+                width: 150px; 
+                padding: 3px; 
+                font-size: 16px; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Enter both Chef Ratings</h1>
+        <form action="/" method="post">
+            <h2>Chef 1 Ratings</h2>
+            <label for="a0">Presentation:</label>
+            <input type="number" id="a0" name="a0" min="0" max="100" required><br>
+            <label for="a1">Taste:</label>
+            <input type="number" id="a1" name="a1" min="0" max="100" required><br>
+            <label for="a2">Hygiene:</label>
+            <input type="number" id="a2" name="a2" min="0" max="100" required><br>
+    
+            <h2>Chef 2 Ratings</h2>
+            <label for="b0">Presentation:</label>
+            <input type="number" id="b0" name="b0" min="0" max="100" required><br>
+            <label for="b1">Taste:</label>
+            <input type="number" id="b1" name="b1" min="0" max="100" required><br>
+            <label for="b2">Hygiene:</label>
+            <input type="number" id="b2" name="b2" min="0" max="100" required><br><br>
+    
+            <input type="submit" value="Submit">
+        </form>
+    
+        {% if chef1_pts is not none and chef2_pts is not none %}
+        <h2>Competition Results</h2>
+        <p>Chef 1 Points: {{ chef1_pts }}</p>
+        <p>Chef 2 Points: {{ chef2_pts }}</p>
+      {% endif %}
+    </body>
+    
+    </center>
+    </html>

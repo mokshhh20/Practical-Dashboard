@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shortest Path Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Distance Matrix:</h2>
+    <table>
+        <tr>
+            <th></th>
+            {% for city in cities %}
+                <th>{{ city }}</th>
+            {% endfor %}
+        </tr>
+        {% for i in range(matrix|length) %}
+            <tr>
+                <td><strong>{{ cities[i] }}</strong></td>
+                {% for j in range(matrix[i]|length) %}
+                    <td>{{ matrix[i][j] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Shortest Path from {{ source }}:</h2>
+    <table>
+        <tr>
+            <th>Destination City</th>
+            <th>Minimum Distance</th>
+        </tr>
+        {% for city, dist in results %}
+            <tr>
+                <td>{{ city }}</td>
+                <td>{{ dist }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

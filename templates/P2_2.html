@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Rabbit Pair Growth Analysis</title>
+</head>
+<body>
+    <header>
+        <h1>Rabbit Pair Growth & Complexity Analysis</h1>
+    </header>
+
+    <section class="input-section"> 
+        <form action="/submit" method="post">
+            <label for="months">Enter months separated by commas:</label>
+            <input type="text" id="months" name="months" placeholder="e.g., 5, 10, 15" required>
+            <button type="submit">Analyze</button>
+        </form>
+    </section>
+
+    {% if results %}
+    <section class="result-section">
+        <div class="results">
+            <h2>Analysis Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        {% for month in results['months'] %}
+                        <th>{{ month }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pairs (Iterative)</td>
+                        {% for pair in results['rabbit_pairs'] %}
+                        <td>{{ pair }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="complexity-section">
+            <h2>Complexity Counts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        {% for month in results['months'] %}
+                        <th>{{ month }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Iteration</td>
+                        {% for count in results['iter_counts'] %}
+                        <td>{{ count }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Recursion</td>
+                        {% for count in results['recur_counts'] %}
+                        <td>{{ count }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="graph-section">
+            <h2>Graphical Analysis</h2>
+            <img src="data:image/png;base64,{{ graph_url }}" alt="Performance Graph">
+        </div>
+    </section>
+    {% endif %}
+</body>
+</html>

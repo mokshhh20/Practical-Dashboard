@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Closest Sums to Zero</title>
+</head>
+<body>
+    <h1>Closest Sums to Zero</h1>
+    <form method="POST" action="/find">
+        <label for="numbers">Enter numbers (comma separated):</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <button type="submit">Find Pairs</button>
+    </form>
+    {% if result %}
+        <h2>Result:</h2>
+        <ul>
+        {% for pair in result %}
+            <li>{{ pair[0] }}, {{ pair[1] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

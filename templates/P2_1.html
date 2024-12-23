@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Calculation Methods - Execution Time Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .content {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .plot {
+            text-align: center;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Sum Calculation Methods - Execution Time Comparison</h1>
+        <div class="plot">
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Execution Time Comparison Plot">
+        </div>
+        <h2>Execution Times</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Input Size (N)</th>
+                    <th>Loop (seconds)</th>
+                    <th>Equation (seconds)</th>
+                    <th>Recursion (seconds)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(numbers|length) %}
+                <tr>
+                    <td>{{ numbers[i] }}</td>
+                    <td>{{ loop_times[i] }}</td>
+                    <td>{{ equation_times[i] }}</td>
+                    <td>{{ recursion_times[i] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

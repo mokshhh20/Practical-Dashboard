@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knapsack Problem Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            display: inline-block;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        input[type="number"], input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+            input[type="number"], input[type="text"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Knapsack Problem Solver</h1>
+    <form method="POST">
+        <label for="capacity">Knapsack Capacity (W):</label><br>
+        <input type="number" name="capacity" id="capacity" required><br><br>
+
+        <label for="items">Number of Items (n):</label><br>
+        <input type="number" name="items" id="items" required><br><br>
+
+        <label for="profits">Profits (comma-separated):</label><br>
+        <input type="text" name="profits" id="profits" required><br><br>
+
+        <label for="weights">Weights (comma-separated):</label><br>
+        <input type="text" name="weights" id="weights" required><br><br>
+
+        <button type="submit">Solve</button>
+    </form>
+
+    {% if show_table %}
+        <h2>DP Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for capacity in range(max_capacity + 1) %}
+                        <th>{{ capacity }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(num_items + 1) %}
+                    <tr>
+                        <th>{{ i }}</th>
+                        {% for value in dp_table[i] %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Selected Items (x1, x2, ...):</h2>
+        <table>
+            <thead>
+                <tr>
+                    {% for i in range(num_items) %}
+                        <th>x{{ i + 1 }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for item in selected_items %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>

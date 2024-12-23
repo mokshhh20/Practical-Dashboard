@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractional Knapsack Problem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 50%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 7px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .matrix-table th, .matrix-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .matrix-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .matrix-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .matrix-table td {
+            color: #555;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fractional Knapsack Problem</h1>
+
+        <form method="POST">
+            <label for="profits">Profits (comma separated):</label><br>
+            <input type="text" id="profits" name="profits" required><br><br>
+
+            <label for="weights">Weights (comma separated):</label><br>
+            <input type="text" id="weights" name="weights" required><br><br>
+
+            <label for="capacity">Capacity:</label><br>
+            <input type="text" id="capacity" name="capacity" required><br><br>
+
+            <input type="submit" value="Calculate">
+        </form>
+
+        {% if selected_items %}
+        <h2>Results</h2>
+
+        <table class="matrix-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Profit</th>
+                    <th>Weight</th>
+                    <th>Ratio (Profit/Weight)</th>
+                    <th>Fraction Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(profits|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ profits[i] }}</td>
+                    <td>{{ weights[i] }}</td>
+                    <td>{{ ratios[i] }}</td>
+                    <td>{{ selected_items[i] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Total Profit: {{ total_profit }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>

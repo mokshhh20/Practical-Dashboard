@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Algorithm Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #333;
+        }
+        .result-answer {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Algorithm Efficiency and Employee Data</h1>
+
+    <form action="/submit" method="post">
+        <label for="elements">Enter Numbers (comma-separated):</label>
+        <input type="text" id="elements" name="elements" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if results %}
+        <h2>Graph</h2>
+        <img src="data:image/png;base64,{{ graph_url }}" alt="Search Efficiency Graph">
+
+        <h2>Employee Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>Position</th>
+                    <th>Mobile Number</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in results.employees %}
+                <tr>
+                    <td>{{ employee.employeeID }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.age }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.mobile_number }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Analysis</h2>
+        <p class="highlight"><strong>What is the position of the highest-paid employee?</strong></p>
+        <p class="result-answer">{{ results.highest_paid_position }}</p>
+
+        <p class="highlight"><strong>Who has the lowest salary?</strong></p>
+        <p class="result-answer">{{ results.lowest_paid_employee }}</p>
+
+        <p class="highlight"><strong>What is the mobile number of the youngest employee?</strong></p>
+        <p class="result-answer">{{ results.youngest_employee_contact }}</p>
+
+        <p class="highlight"><strong>What is the salary of the oldest employee?</strong></p>
+        <p class="result-answer">{{ results.oldest_employee_salary }}</p>
+    {% endif %}
+</body>
+</html>
